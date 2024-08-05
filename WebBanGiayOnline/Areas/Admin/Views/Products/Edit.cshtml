@@ -74,24 +74,18 @@
                                             @Html.ValidationMessageFor(model => model.Product.ProductName, null, new { @class = "text-danger" })
                                         </div>
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">Alias</label>
-                                            @Html.TextBoxFor(model => model.Product.Alias, new { @class = "form-control", @placeholder = "Alias" })
-                                            @Html.ValidationMessageFor(model => model.Product.Alias, null, new { @class = "text-danger" })
-                                        </div>
-                                        <div class="form-group">
                                             <label for="exampleInputEmail1">Mã sản phẩm</label>
                                             @Html.TextBoxFor(model => model.Product.ProductCode, new { @class = "form-control", @placeholder = "Mã sản phẩm" })
                                             @Html.ValidationMessageFor(model => model.Product.ProductCode, null, new { @class = "text-danger" })
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Danh mục sản phẩm</label>
-                                            @Html.DropDownListFor(model => model.Product.ProductCategoryId, ViewBag.ProductCategory as SelectList, "-Chọn danh mục sản phẩm-", new { @class = "form-control" })
+                                            @Html.DropDownListFor(model => model.Product.ProductCategoryId, (IEnumerable<SelectListItem>)ViewBag.ProductCategory, new { @class = "form-control" })
                                             @Html.ValidationMessageFor(model => model.Product.ProductCategoryId, null, new { @class = "text-danger" })
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Đối tượng</label>
-                                            @Html.DropDownListFor(model => model.Product.ProductGenderId, ViewBag.ProductGender as SelectList, "-Chọn đối tượng-", new { @class = "form-control" })
-                                            @Html.ValidationMessageFor(model => model.Product.ProductGenderId, null, new { @class = "text-danger" })
+                                            @Html.DropDownListFor(model => model.Product.ProductGenderId, (IEnumerable<SelectListItem>)ViewBag.ProductGender, new { @class = "form-control" })
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Mô tả</label>
@@ -107,7 +101,7 @@
                                             <div class="col-4">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Số lượng</label>
-                                                    @Html.TextBoxFor(model => model.Product.Quantity, new { @class = "form-control", @Value = "1" })
+                                                    @Html.TextBoxFor(model => model.Product.Quantity, new { @class = "form-control" })
                                                     @Html.ValidationMessageFor(model => model.Product.Quantity, null, new { @class = "text-danger" })
                                                 </div>
                                             </div>
@@ -179,19 +173,21 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @for (int i = 0; i < Model.ProductDetails.Count; i++)
+                                                        @if (Model.ProductDetails != null && Model.ProductDetails.Count > 0)
                                                         {
-                                                            <tr>
-                                                                <td>@Html.DropDownListFor(x => x.ProductDetails[i].ColorCode, (SelectList)ViewBag.Colors, new { @class = "form-control" })</td>
-                                                                <td>@Html.DropDownListFor(x => x.ProductDetails[i].SizeId, (SelectList)ViewBag.Sizes, new { @class = "form-control" })</td>
-                                                                <td>@Html.TextBoxFor(x => x.ProductDetails[i].Stock, new { @class = "form-control" })</td>
-                                                                <td><button type="button" class="btn btn-danger" onclick="removeDetail(this)">Xóa</button></td>
-                                                            </tr>
-                                                        }     
+                                                            for (int i = 0; i < Model.ProductDetails.Count; i++)
+                                                            {
+                                                                <tr>
+                                                                    <td>@Html.DropDownListFor(x => x.ProductDetails[i].ColorCode, (SelectList)ViewBag.Colors, new { @class = "form-control" })</td>
+                                                                    <td>@Html.DropDownListFor(x => x.ProductDetails[i].SizeId, (SelectList)ViewBag.Sizes, new { @class = "form-control" })</td>
+                                                                    <td>@Html.TextBoxFor(x => x.ProductDetails[i].Stock, new { @class = "form-control" })</td>
+                                                                    <td><button type="button" class="btn btn-danger" onclick="removeDetail(this)">Xóa</button></td>
+                                                                </tr>
+                                                            }
+                                                        }
                                                     </tbody>
                                                 </table>
-                                                    <button type="submit" class="btn btn-primary">Lưu</button>
-                                                    <a href="/admin/products" class="btn btn-danger">Quay lại</a>
+                                                <button type="button" class="btn btn-success" onclick="addDetail()">Thêm</button>
                                             </div>
                                         </div>
 
@@ -204,6 +200,7 @@
                             </div><!-- /.card-body -->
                             <div class="form-group">
                                 <button type="submit" class="btn btn-success">Cập nhật</button>
+                                <a href="/admin/products" class="btn btn-danger">Quay lại</a>
                             </div>
                         </div> <!-- /.card -->
                     }

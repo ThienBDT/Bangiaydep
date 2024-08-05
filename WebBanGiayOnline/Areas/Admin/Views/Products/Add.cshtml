@@ -197,14 +197,17 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @for (int i = 0; i < Model.ProductDetails.Count; i++)
+                                                        @if (Model.ProductDetails != null && Model.ProductDetails.Count > 0)
                                                         {
+                                                            for (int i = 0; i < Model.ProductDetails.Count; i++)
+                                                            {
                                                             <tr>
                                                                 <td>@Html.DropDownListFor(x => x.ProductDetails[i].ColorCode, (SelectList)ViewBag.Colors, "- Chọn màu -", new { @class = "form-control" })</td>
                                                                 <td>@Html.DropDownListFor(x => x.ProductDetails[i].SizeId, (SelectList)ViewBag.Sizes, "- Chọn Size -", new { @class = "form-control" })</td>
                                                                 <td>@Html.TextBoxFor(x => x.ProductDetails[i].Stock, new { @class = "form-control" })</td>
                                                                 <td><button type="button" class="btn btn-danger" onclick="removeDetail(this)">Xóa</button></td>
                                                             </tr>
+                                                            }
                                                         }
                                                     </tbody>
                                                 </table>

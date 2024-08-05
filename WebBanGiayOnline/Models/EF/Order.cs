@@ -17,13 +17,13 @@ namespace WebBanGiayOnline.Models.EF
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int OrderId { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Tên khách hàng không để trống")]
         public string ReceiverName { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Số điện thoại không để trống")]
         public string Phone { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Địa chỉ nhận hàng không để trống")]
         public string Address { get; set; }
-        public string Note { get; set; }
+        public int TypePayment { get; set; }
 
         public int StatusId { get; set; }
         [ForeignKey("StatusId")]

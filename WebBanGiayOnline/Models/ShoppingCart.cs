@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using WebBanGiayOnline.Models.EF;
 
 namespace WebBanGiayOnline.Models
 {
@@ -64,7 +65,14 @@ namespace WebBanGiayOnline.Models
         public string CategoryName { get; set; }
         public string GenderName { get; set; }
         public string ProductImg { get; set; }
+        public Product Product { get; set; }
+        public string SizeName { get; set; }
+        public int SizeId { get; set; }
+        public string ColorName { get; set; }
+        public string ColorCode { get; set; }
+        public int ProductDetailId { get; set; }
         public int Quantity { get; set; }
+        public int Stock { get; set; }
         public decimal Price { get; set; }
         public decimal TotalPrice { get; set; }
         public List<ProductDetailViewModel> ProductDetails { get; set; }
@@ -73,7 +81,7 @@ namespace WebBanGiayOnline.Models
     public class ProductDetailViewModel
     {
         public int ProductDetailId { get; set; }
-        public string ColorName { get; set; }     
+        public string ColorName { get; set; }
         public int SizeId { get; set; }
         public int Stock { get; set; }
     }

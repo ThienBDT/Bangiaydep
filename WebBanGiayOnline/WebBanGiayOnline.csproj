@@ -327,10 +327,35 @@
     <Compile Include="Migrations\202408020521560_colorcode.Designer.cs">
       <DependentUpon>202408020521560_colorcode.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202408050432278_updatedatabaseproduct.cs" />
+    <Compile Include="Migrations\202408050432278_updatedatabaseproduct.Designer.cs">
+      <DependentUpon>202408050432278_updatedatabaseproduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202408050715428_dht.cs" />
+    <Compile Include="Migrations\202408050715428_dht.Designer.cs">
+      <DependentUpon>202408050715428_dht.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202408050724526_htsa.cs" />
+    <Compile Include="Migrations\202408050724526_htsa.Designer.cs">
+      <DependentUpon>202408050724526_htsa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202408050854589_btaw.cs" />
+    <Compile Include="Migrations\202408050854589_btaw.Designer.cs">
+      <DependentUpon>202408050854589_btaw.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202408051155196_modelnew.cs" />
+    <Compile Include="Migrations\202408051155196_modelnew.Designer.cs">
+      <DependentUpon>202408051155196_modelnew.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202408051436316_payment.cs" />
+    <Compile Include="Migrations\202408051436316_payment.Designer.cs">
+      <DependentUpon>202408051436316_payment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\updanamespace.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Common\Filter.cs" />
+    <Compile Include="Models\CustomerViewModel.cs" />
     <Compile Include="Models\EF\Adv.cs" />
     <Compile Include="Models\EF\Category.cs" />
     <Compile Include="Models\CommonAbstract.cs" />
@@ -3440,6 +3465,7 @@
     <Content Include="Content\assets\plugins\themify-icons\fonts\themify.eot" />
     <Content Include="Content\assets\plugins\themify-icons\fonts\themify.ttf" />
     <Content Include="Content\assets\plugins\themify-icons\fonts\themify.woff" />
+    <Content Include="Areas\Admin\Views\Products\GetEdit.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\coloris.js" />
     <Content Include="Scripts\coloris.min.css" />
@@ -3511,6 +3537,8 @@
     <Content Include="Views\Products\Detail.cshtml" />
     <Content Include="Views\ShoppingCart\Index.cshtml" />
     <Content Include="Views\ShoppingCart\Partial_Item_Cart.cshtml" />
+    <Content Include="Views\ShoppingCart\CheckOut.cshtml" />
+    <Content Include="Views\ShoppingCart\Partial_Item_ThanhToan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3621,6 +3649,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202408020521560_colorcode.resx">
       <DependentUpon>202408020521560_colorcode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202408050432278_updatedatabaseproduct.resx">
+      <DependentUpon>202408050432278_updatedatabaseproduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202408050715428_dht.resx">
+      <DependentUpon>202408050715428_dht.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202408050724526_htsa.resx">
+      <DependentUpon>202408050724526_htsa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202408050854589_btaw.resx">
+      <DependentUpon>202408050854589_btaw.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202408051155196_modelnew.resx">
+      <DependentUpon>202408051155196_modelnew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202408051436316_payment.resx">
+      <DependentUpon>202408051436316_payment.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

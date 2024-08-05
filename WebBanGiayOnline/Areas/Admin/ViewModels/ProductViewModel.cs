@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using WebBanGiayOnline.Models.EF;
 
 namespace WebBanGiayOnline.Areas.Admin.ViewModels
@@ -9,6 +10,7 @@ namespace WebBanGiayOnline.Areas.Admin.ViewModels
         public Product Product { get; set; }
         public ProductCategory ProductCategory { get; set; }
         public ProductGender ProductGender { get; set; }
+        [NotMapped]
         public List<ProductDetailViewModel> ProductDetails { get; set; }
         public List<ProductDetailImage> ProductDetailImages { get; set; }
       

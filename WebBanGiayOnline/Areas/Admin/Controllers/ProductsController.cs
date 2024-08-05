@@ -9,6 +9,7 @@ using WebBanGiayOnline.Models;
 using WebBanGiayOnline.Models.EF;
 using System.Data.Entity;
 using System.Threading.Tasks;
+using ProductDetailViewModel = WebBanGiayOnline.Areas.Admin.ViewModels.ProductDetailViewModel;
 
 namespace WebBanGiayOnline.Areas.Admin.Controllers
 {
@@ -37,7 +38,7 @@ namespace WebBanGiayOnline.Areas.Admin.Controllers
             var viewModel = new ProductViewModel
             {
                 Product = new Product(),
-                ProductDetails = new List<ProductDetailViewModel>() // Khởi tạo ProductDetails
+                ProductDetails = new List<ProductDetailViewModel>() 
             };
             ViewBag.ProductCategory = new SelectList(db.ProductCategories.ToList(), "Id", "ProductCategoryName");
             ViewBag.ProductGender = new SelectList(db.ProductGenders.ToList(), "Id", "ProductGenderName");
@@ -76,7 +77,11 @@ namespace WebBanGiayOnline.Areas.Admin.Controllers
                         };
                         db.ProductDetailImages.Add(productdetailimage);
                     }
-                }              
+                }
+                else
+                {
+                    return View(viewModel);
+                }
                 viewModel.Product.CreatedDate = DateTime.Now;
                 viewModel.Product.Alias = WebBanGiayOnline.Models.Common.Filter.FilterChar(viewModel.Product.ProductName);
                 db.Products.Add(viewModel.Product);
@@ -96,14 +101,14 @@ namespace WebBanGiayOnline.Areas.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ProductCategory = new SelectList(db.ProductCategories.ToList(), "Id", "ProductCategoryName");
-            ViewBag.ProductGender = new SelectList(db.ProductGenders.ToList(), "Id", "ProductGenderName");
-            ViewBag.Colors = new SelectList(db.Colors, "ColorCode", "ColorName");
-            ViewBag.Sizes = new SelectList(db.Sizes, "SizeId", "SizeName");
+            //ViewBag.ProductCategory = new SelectList(db.ProductCategories.ToList(), "Id", "ProductCategoryName");
+            //ViewBag.ProductGender = new SelectList(db.ProductGenders.ToList(), "Id", "ProductGenderName");
+            //ViewBag.Colors = new SelectList(db.Colors, "ColorCode", "ColorName");
+            //ViewBag.Sizes = new SelectList(db.Sizes, "SizeId", "SizeName");
             return View(viewModel);
         }
         // get
-        public ActionResult Edit(int id, ProductViewModel viewModel)
+        public ActionResult GetEdit(int id, ProductViewModel viewModel)
         {
             var item = db.Products.Find(id);
           
@@ -121,21 +126,88 @@ namespace WebBanGiayOnline.Areas.Admin.Controllers
             viewModel.Product.IsSale = item.IsSale;
             viewModel.Product.IsFeature = item.IsFeature;
             viewModel.Product.ProductCategoryId = item.ProductCategoryId;
-            viewModel.Product.ProductGenderId = item.ProductGenderId;            
+            viewModel.Product.ProductGenderId = item.ProductGenderId;           
             viewModel.ProductDetails = db.ProductDetails.Where(pd => pd.ProductId == item.ProductId).Select(pd => new ProductDetailViewModel
                                          {
+                                            ProductDetailId = pd.ProductDetailId,
                                             ColorCode = pd.ColorCode,
                                             SizeId = pd.SizeId,
                                             Stock = pd.Stock,                                     
-                                 }).ToList();           
+                                 }).ToList();
+            //foreach (var detail in viewModel.ProductDetails)
+            //{
+            //    var productDetail = new ProductDetail
+            //    {
+            //        ProductId = viewModel.Product.ProductId,
+            //        ColorCode = detail.ColorCode,
+            //        SizeId = detail.SizeId,
+            //        Stock = detail.Stock
+            //    };
+            //    db.ProductDetails.Add(productDetail);
+            //}
             ViewBag.ProductCategory = new SelectList(db.ProductCategories.ToList(), "Id", "ProductCategoryName");
             ViewBag.ProductGender = new SelectList(db.ProductGenders.ToList(), "Id", "ProductGenderName");
             ViewBag.Colors = new SelectList(db.Colors, "ColorCode", "ColorName");
             ViewBag.Sizes = new SelectList(db.Sizes, "SizeId", "SizeName");
-            viewModel.ModifiedDate = DateTime.Now;
-            //db.ProductDetails.Attach(viewModel.ProductDetails);
-            db.Products.Attach(viewModel.Product);
-            db.SaveChanges();
+            return View(viewModel);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(ProductViewModel viewModel)
+        {
+            
+            if (ModelState.IsValid)
+            {
+                var existingProduct = db.Products.FirstOrDefault(x => x.ProductCode == viewModel.Product.ProductCode);
+                if (existingProduct != null)
+                {
+                    ModelState.AddModelError("", "Mã sản phẩm này đã tồn tại này đã tồn tại.");
+                    return View(viewModel);
+                }
+
+                var item = db.Products.First(p => p.ProductId == viewModel.Product.ProductId);
+
+                item.ProductName = viewModel.Product.ProductName;
+                item.ProductCode = viewModel.Product.ProductCode;
+                item.Detail = viewModel.Product.Detail;
+                item.Description = viewModel.Product.Description;
+                item.Price = viewModel.Product.Price;
+                item.PriceSale = viewModel.Product.PriceSale;
+                item.Quantity = viewModel.Product.Quantity;
+                item.IsActive = viewModel.Product.IsActive;
+                item.IsHome = viewModel.Product.IsHome;
+                item.IsFeature = viewModel.Product.IsFeature;
+                item.IsHot = viewModel.Product.IsHot;
+                item.IsSale = viewModel.Product.IsSale;
+                item.ProductCategoryId = viewModel.Product.ProductCategoryId;
+                item.ProductGenderId = viewModel.Product.ProductGenderId;
+
+                item.ProductDetails.Clear();
+                if(viewModel.ProductDetails != null)
+                {
+                    foreach(var detail in viewModel.ProductDetails)
+                    {
+                        var productDetail = new ProductDetail
+                        {
+                            ProductId = viewModel.Product.ProductId,
+                            ColorCode = detail.ColorCode,
+                            SizeId = detail.SizeId,
+                            Stock = detail.Stock
+                        };
+                        db.ProductDetails.Add(productDetail);
+                    }
+                }
+                
+                viewModel.ModifiedDate = DateTime.Now;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            viewModel.Product.CreatedDate = DateTime.Now;
+            viewModel.Product.Alias = WebBanGiayOnline.Models.Common.Filter.FilterChar(viewModel.Product.ProductName);
+            //ViewBag.ProductCategory = new SelectList(db.ProductCategories.ToList(), "Id", "ProductCategoryName");
+            //ViewBag.ProductGender = new SelectList(db.ProductGenders.ToList(), "Id", "ProductGenderName");
+            //ViewBag.Colors = new SelectList(db.Colors, "ColorCode", "ColorName");
+            //ViewBag.Sizes = new SelectList(db.Sizes, "SizeId", "SizeName");
             return View(viewModel);
         }
         [HttpPost]

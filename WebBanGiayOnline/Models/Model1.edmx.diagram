@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bf8d2bd56e01434eb4b989c25a57b422" Name="Diagram1">
+        <EntityTypeShape EntityType="WebBanGiayOnlineModel.C__MigrationHistory" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanGiayOnlineModel.Adv" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanGiayOnlineModel.AspNetRole" Width="1.5" PointX="5.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanGiayOnlineModel.AspNetUserClaim" Width="1.5" PointX="10.25" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanGiayOnlineModel.AspNetUserLogin" Width="1.5" PointX="10.25" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanGiayOnlineModel.AspNetUser" Width="1.5" PointX="8" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanGiayOnlineModel.Category" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanGiayOnlineModel.Color" Width="1.5" PointX="0.5" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanGiayOnlineModel.Contact" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanGiayOnlineModel.Customer" Width="1.5" PointX="0.75" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanGiayOnlineModel.Employee" Width="1.5" PointX="0.75" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanGiayOnlineModel.News" Width="1.5" PointX="15" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanGiayOnlineModel.Order" Width="1.5" PointX="3" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanGiayOnlineModel.OrderDetail" Width="1.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanGiayOnlineModel.Post" Width="1.5" PointX="15" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanGiayOnlineModel.Product" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanGiayOnlineModel.ProductCategory" Width="1.5" PointX="2.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanGiayOnlineModel.ProductDetail" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanGiayOnlineModel.ProductDetailImage" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanGiayOnlineModel.ProductGender" Width="1.5" PointX="4.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanGiayOnlineModel.Size" Width="1.5" PointX="0.75" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanGiayOnlineModel.Status" Width="1.5" PointX="0.75" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanGiayOnlineModel.Subscribe" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanGiayOnlineModel.sysdiagram" Width="1.5" PointX="6.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanGiayOnlineModel.SystemSetting" Width="1.5" PointX="8.75" PointY="12.75" IsExpanded="true" />
+        <AssociationConnector Association="WebBanGiayOnlineModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanGiayOnlineModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanGiayOnlineModel.FK_dbo_News_dbo_Category_CategoryId" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanGiayOnlineModel.FK_dbo_Posts_dbo_Category_CategoryId" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanGiayOnlineModel.FK_dbo_ProductDetail_dbo_Color_ColorCode" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanGiayOnlineModel.FK_dbo_Order_dbo_Customer_CustomerId" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanGiayOnlineModel.FK_dbo_Order_dbo_Employee_EmployeeId" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanGiayOnlineModel.FK_dbo_Order_dbo_Status_StatusId" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanGiayOnlineModel.FK_dbo_OrderDetail_dbo_Order_OrderId" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanGiayOnlineModel.FK_dbo_OrderDetail_dbo_ProductDetail_ProductDetailId" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanGiayOnlineModel.FK_dbo_ProductDetail_dbo_Product_ProductId" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanGiayOnlineModel.FK_dbo_ProductDetailImage_dbo_Product_ProductId" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanGiayOnlineModel.FK_dbo_ProductDetail_dbo_Size_SizeId" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanGiayOnlineModel.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

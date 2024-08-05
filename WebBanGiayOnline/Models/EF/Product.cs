@@ -41,14 +41,16 @@ namespace WebBanGiayOnline.Models.EF
         public bool IsFeature { get; set; }  // Hiển thị sản phẩm nổi bật
         public bool IsHot { get; set; }      // Hiển thị sản phẩm Hot
         public bool IsActive { get; set; }   // Trạng thái hiện thị sản phẩm
-        public int ProductCategoryId { get; set; }
+
         [ForeignKey("ProductCategoryId")]
         public virtual ProductCategory ProductCategory { get; set; }
-        public int ProductGenderId { get; set; }
+        public int ProductCategoryId { get; set; }
+
         [ForeignKey("ProductGenderId")]
         public virtual ProductGender ProductGender { get; set; }
+        public int ProductGenderId { get; set; }
         public virtual ICollection<ProductDetailImage> ProductDetailImages { get; set; }
-        public virtual ICollection<ProductDetail> ProductDetails { get; set; }
+        public virtual ICollection<ProductDetail> ProductDetails { get; set; }     
         public ICollection<OrderDetail> OrderDetails { get; set; }
         [StringLength(250)]
         public string SeoTitle { get; set; }
