@@ -70,7 +70,7 @@ namespace WebBanGiayOnline.Controllers
             return View(order);
         }
         [HttpPost]
-        public ActionResult AddToCart(int id, int quantity)
+        public ActionResult AddToCart(int id, int quantity, string colorcode, int sizeid)
         {
 
             var code = new { Success = false, msg = "", code = -1, Count = 0 };
@@ -90,7 +90,7 @@ namespace WebBanGiayOnline.Controllers
                     GenderName = checkProduct.ProductGender.ProductGenderName,
                     CategoryName = checkProduct.ProductCategory.ProductCategoryName,
                     Alias = checkProduct.Alias,
-                    Quantity = quantity
+                    Quantity = quantity,
                 };
                 if (checkProduct.ProductDetailImages.FirstOrDefault(x => x.IsDefault) != null)
                 {
@@ -101,6 +101,10 @@ namespace WebBanGiayOnline.Controllers
                 {
                     item.Price = (decimal)(checkProduct.PriceSale);
                 }
+
+                item.SizeId = sizeid;
+                item.ColorCode = colorcode;
+
                 item.TotalPrice = item.Quantity * item.Price;
                 cart.AddToCart(item, quantity);
                 Session["Cart"] = cart;

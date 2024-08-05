@@ -80,14 +80,8 @@
                         <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
                     </ul>
                     <div class="product_color">
-                        <span>Select Color:</span>
-                        <ul>
-                            @foreach (var color in Model.ProductDetails)
-                            {
-                                <li style="background: @color.ColorCode"></li>
-                            }
-
-                        </ul>
+                        <td>@Html.Raw(Html.DropDownList("ProductDetails[INDEX].ColorCode", (SelectList)ViewBag.Colors, "- Chọn màu -", new { @class = "form-control" }))</td>
+                        <td>@Html.Raw(Html.DropDownList("ProductDetails[INDEX].SizeId", (SelectList)ViewBag.Sizes, "- Chọn Size -", new { @class = "form-control" }))</td>
                     </div>
                     <div class="quantity d-flex flex-column flex-sm-row align-items-sm-center">
                         <span>Quantity:</span>

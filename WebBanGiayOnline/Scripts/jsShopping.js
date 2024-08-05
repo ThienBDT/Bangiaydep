@@ -4,6 +4,8 @@
         e.preventDefault();
         var id = $(this).data('id');
         var quantity = 1;
+        var colorcode = $('#ProductDetails_INDEX__ColorCode').val();
+        var sizeid = $('#ProductDetails_INDEX__SizeId').val();
         var tQuantity = $('#quantity_value').text();
         if (tQuantity != '') {
             quantity = parseInt(tQuantity);
@@ -11,7 +13,7 @@
         $.ajax({
             url: '/ShoppingCart/AddToCart',
             type: 'POST',
-            data: { id: id, quantity: quantity },
+            data: { id: id, quantity: quantity, colorcode: colorcode, sizeid: sizeid},
             success: function (rs) {
                 if (rs.Success) {
                     $('#checkout_items').html(rs.Count);
