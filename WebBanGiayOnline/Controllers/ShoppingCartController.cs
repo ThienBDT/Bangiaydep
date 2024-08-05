@@ -9,7 +9,8 @@ using WebBanGiayOnline.Models.EF;
 namespace WebBanGiayOnline.Controllers
 {
     public class ShoppingCartController : Controller
-    {       
+    {
+        private ApplicationDbContext db = new ApplicationDbContext();
         // GET: ShoppingCart
         public ActionResult Index()
         {           
@@ -40,10 +41,10 @@ namespace WebBanGiayOnline.Controllers
         {
             ShoppingCart cart = (ShoppingCart)Session["Cart"];
             if (cart != null)
-            {
+            {                
                 return PartialView(cart.Items);
             }
-            
+         
             return PartialView();
         }
         public ActionResult ShowCount()
@@ -103,7 +104,18 @@ namespace WebBanGiayOnline.Controllers
                 }
 
                 item.SizeId = sizeid;
+                var sizeNames = db.Sizes
+                                  .Where(c => c.SizeId == sizeid) 
+                                  .Select(c => c.SizeName) 
+                                  .ToList();
+                item.SizeName = sizeNames.FirstOrDefault();
                 item.ColorCode = colorcode;
+                // Truy vấn để lấy ColorName dựa trên ColorCode
+                var colorNames = db.Colors
+                                   .Where(c => c.ColorCode == colorcode) // Điều kiện lọc theo ColorCode
+                                   .Select(c => c.ColorName) // Chọn trường ColorName
+                                   .ToList();
+                item.ColorName = colorNames.FirstOrDefault();
 
                 item.TotalPrice = item.Quantity * item.Price;
                 cart.AddToCart(item, quantity);
